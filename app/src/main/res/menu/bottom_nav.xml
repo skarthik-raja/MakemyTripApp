@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homemenu"
+        android:title="Home"
+        android:icon="@drawable/makemytrip"/>
+
+    <item
+        android:id="@+id/mytripsmenu"
+        android:title="My Trips"
+        android:icon="@drawable/baseline_shopping_bag_24"/>
+
+    <item
+        android:id="@+id/Wheremenu"
+        android:title="Where2Go"
+        android:icon="@drawable/makemytrip"/>
+
+    <item
+        android:id="@+id/tripmoney"
+        android:title="TripMoney"
+        android:icon="@drawable/makemytrip"/>
+    <item
+        android:id="@+id/beahost"
+        android:title="Be A Host"
+        android:icon="@drawable/makemytrip"/>
+</menu>

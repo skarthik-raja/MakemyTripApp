@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search_icon"
+        android:icon="@drawable/baseline_search_24"
+        app:showAsAction="ifRoom"
+        android:title="search"/>
+
+    <item
+        android:id="@+id/reload_icon"
+        android:icon="@drawable/makemytrip"
+        app:showAsAction="ifRoom"
+        android:title="reload"/>
+
+    <item
+        android:id="@+id/grid_icon"
+        android:icon="@drawable/mybiz"
+        app:showAsAction="ifRoom"
+        android:title="reload"/>
+</menu>

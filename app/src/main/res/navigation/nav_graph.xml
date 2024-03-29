@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.makemytripapp.SplashFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.makemytripapp.LanguageFragment"
+        android:label="Second Fragment"
+        tools:layout="@layout/fragment_language">
+        <action
+            android:id="@+id/action_languageFragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.makemytripapp.LoginFragment"
+        android:label="Login Fragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_otpFragment"
+            app:destination="@+id/otpFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.example.makemytripapp.OTPFragment"
+        android:label="Otp Fragment"
+        tools:layout="@layout/fragment_o_t_p">
+
+        <action
+            android:id="@+id/action_otpFragment_to_home_Fragment_"
+            app:destination="@+id/home_Fragment_"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/home_Fragment_"
+        android:name="com.example.makemytripapp.Home_Fragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home_"/>
+
+</navigation>
