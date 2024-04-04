@@ -2,6 +2,7 @@ package com.example.makemytripapp
 
 import RecyclerAdapter
 import RecyclerData
+import TextAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,25 +28,23 @@ class Home_Fragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home_, container, false)
         recyclerView = view.findViewById(R.id.rv_design)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
-
         recyclerAdapter = RecyclerAdapter(requireContext())
         recyclerView.adapter = recyclerAdapter
         recyclerAdapter.updateDataset(getAdditionalItems())
         dropdownIcon = view.findViewById(R.id.drop_icon)
-        val isExpanded = false
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.text_recyclerview)
-        val adapter = TextAdapter(getDataList())
-        recyclerView.adapter = adapter
+        val textRecyclerView: RecyclerView = view.findViewById(R.id.textview_recycler)
+        val textAdapter = TextAdapter(getTextDataList())
+        textRecyclerView.adapter = textAdapter
+
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        textRecyclerView.layoutManager = layoutManager
+
+        val imageRecyclerView: RecyclerView = view.findViewById(R.id.text_recyclerview)
+        val imageAdapter = ImageAdapter(getDataList().map { it.second })
+        imageRecyclerView.adapter = imageAdapter
         val horizontalLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val verticalLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = horizontalLayoutManager
-
-        val viewAllTextView: TextView = view.findViewById(R.id.rightTextView)
-        viewAllTextView.setOnClickListener {
-            recyclerView.layoutManager = verticalLayoutManager
-            adapter.notifyDataSetChanged()
-        }
+        imageRecyclerView.layoutManager = horizontalLayoutManager
 
         val stayRecyclerView: RecyclerView = view.findViewById(R.id.recycler_view1)
         val stayAdapter = StayAdapter(getStayDataList())
@@ -53,16 +52,39 @@ class Home_Fragment : Fragment() {
         val stayLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         stayRecyclerView.layoutManager = stayLayoutManager
 
+        val verticalLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        val viewAllTextView: TextView = view.findViewById(R.id.rightTextView)
+        viewAllTextView.setOnClickListener {
+            textRecyclerView.layoutManager = verticalLayoutManager
+            textAdapter.notifyDataSetChanged()
+        }
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.grid_recyclerview)
+        val layoutManager1 = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = layoutManager1
+
+        val imageList = listOf(
+            R.drawable.wynadhamhotels,
+            R.drawable.thefernhotels,
+            R.drawable.indehotels,
+            R.drawable.clarkshotels
+        )
+
+        val adapter = GridAdapter(requireContext(), imageList)
+        recyclerView.adapter = adapter
+
+
+        var isExpanded = false
         dropdownIcon.setOnClickListener {
-            Log.d("HomeFragment","Button is clicked")
-            if(isExpanded){
+            Log.d("HomeFragment", "Button is clicked")
+            isExpanded = !isExpanded
+            if (isExpanded) {
                 recyclerAdapter.updateDataset(getAdditionalItems())
-                dropdownIcon.visibility=View.GONE
-            }else{
+                dropdownIcon.visibility=View.VISIBLE
+            } else {
                 recyclerAdapter.updateDataset(getInitialItems())
-                dropdownIcon.visibility=View.GONE
-
+                dropdownIcon.visibility = View.VISIBLE
             }
         }
 
@@ -72,14 +94,14 @@ class Home_Fragment : Fragment() {
     private fun getInitialItems(): List<RecyclerData> {
         return listOf(
             RecyclerData("Car", R.drawable.car, false, true),
-            RecyclerData("Holidays", R.drawable.holidays, false, true),
-            RecyclerData("House", R.drawable.house, false, true),
-            RecyclerData("Taxi", R.drawable.taxi, false, true),
-            RecyclerData("Car", R.drawable.car, false, true),
-            RecyclerData("Holidays", R.drawable.holidays, false, true),
-            RecyclerData("House", R.drawable.house, false, true),
-            RecyclerData("Taxi", R.drawable.taxi, false, true),
-            RecyclerData("Car", R.drawable.car, false, true),
+            RecyclerData("HomeStays & villas", R.drawable.house, false, true),
+            RecyclerData("Outstation cabs", R.drawable.taxi, false, true),
+            RecyclerData("Forex Card & Currency", R.drawable.card, false, true),
+            RecyclerData("Gift Cards", R.drawable.gift, false, true),
+            RecyclerData("Hourly Stays", R.drawable.hourlystays, false, true),
+            RecyclerData("Nearby Staycations", R.drawable.bags, false, true),
+            RecyclerData("Travel Insurance", R.drawable.travelinsurance, false, true),
+            RecyclerData("Flight Status", R.drawable.car, false, true),
             RecyclerData("Holidays", R.drawable.holidays, false, true),
             RecyclerData("House", R.drawable.house, false, true),
             RecyclerData("Taxi", R.drawable.taxi, false, true)
@@ -105,7 +127,7 @@ class Home_Fragment : Fragment() {
 
     private fun getDataList(): List<Pair<String, Int>> {
         return listOf(
-            "Trending" to R.drawable.poster1,
+            "Trending" to R.drawable.trendingoffer,
             "Hotels" to R.drawable.hotelimages,
             "Flights" to R.drawable.flightimages,
             "Rails" to R.drawable.trainimages,
@@ -116,15 +138,28 @@ class Home_Fragment : Fragment() {
 
     private fun getStayDataList(): List<StaySite> {
         return listOf(
-            StaySite("Vivanta Surajikund,    11,151 " +
-                    "NCR             Per night" +
+            StaySite("Vivanta Surajikund,   11,151 " +
+                    "NCR     Per night " +
                     "Faridabad ", R.drawable.hotelvivanta),
-            StaySite("Taj Palace,New           14,751" +
-                    "Delhi           per night" +
+            StaySite("Taj Palace,New,       14,751 " +
+                    "Delhi           per night " +
                     "Delhi", R.drawable.tajhotel),
-            StaySite("Radisson Hotel      4,458" +
-                    "Agra          per night" +
-                    "Agra", R.drawable.radisonhotel),
+            StaySite("Radisson Hotel,      4,458 " +
+                    "Agra          per night  " +
+                    "Agra ", R.drawable.radisonhotel),
+        )
+    }
+
+    private fun getTextDataList(): List<String> {
+        return listOf(
+            "Hotels",
+            "Flights",
+            "Bus",
+            "Cabs",
+            "Rails",
+            "Trending",
+            "Holiday"
+
         )
     }
 

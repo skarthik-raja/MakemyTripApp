@@ -8,7 +8,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.makemytripapp.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,9 +28,28 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         showHideBottomNavigation(navController)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNav.setupWithNavController(navController)
+
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homemenu -> {
+                    navController.navigate(R.id.home_Fragment_)
+                    true
+                }
+                R.id.mytripsmenu -> {
+                    navController.navigate(R.id.mytripsfragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
     private fun hideBottomNavigation(){
         binding.bottomNavigationView.visibility = View.GONE
     }
