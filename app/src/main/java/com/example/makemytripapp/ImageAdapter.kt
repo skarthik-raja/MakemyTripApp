@@ -1,16 +1,17 @@
+package com.example.makemytripapp
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.makemytripapp.R
 
-class TextAdapter(private val dataList: List<String>) :
-    RecyclerView.Adapter<TextAdapter.ViewHolder>() {
+class ImageAdapter(private val dataList: List<Int>) :
+    RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.textview_items, parent, false)
+            .inflate(R.layout.item_recyclerview_horizontal, parent, false)
         return ViewHolder(view)
     }
 
@@ -24,10 +25,10 @@ class TextAdapter(private val dataList: List<String>) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textView: TextView = itemView.findViewById(R.id.text_view_recycler)
+        private val imageView: ImageView = itemView.findViewById(R.id.image_view_icon)
 
-        fun bind(data: String) {
-            textView.text = data
+        fun bind(imageResource: Int) {
+            imageView.setImageResource(imageResource)
         }
     }
 }

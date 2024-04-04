@@ -53,4 +53,10 @@
         android:label="Home Fragment"
         tools:layout="@layout/fragment_home_"/>
 
+    <fragment
+        android:id="@+id/mytripsfragment"
+        android:name="com.example.makemytripapp.MytripsFragment"
+        android:label="MyTrips Fragment"
+        tools:layout="@layout/fragment_mytrips"/>
+
 </navigation>

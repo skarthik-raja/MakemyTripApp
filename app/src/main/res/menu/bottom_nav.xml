@@ -4,7 +4,7 @@
     <item
         android:id="@+id/homemenu"
         android:title="Home"
-        android:icon="@drawable/makemytrip"/>
+        android:icon="@drawable/baseline_home_24"/>
 
     <item
         android:id="@+id/mytripsmenu"
@@ -14,14 +14,14 @@
     <item
         android:id="@+id/Wheremenu"
         android:title="Where2Go"
-        android:icon="@drawable/makemytrip"/>
+        android:icon="@drawable/destination"/>
 
     <item
         android:id="@+id/tripmoney"
         android:title="TripMoney"
-        android:icon="@drawable/makemytrip"/>
+        android:icon="@drawable/moneyicon"/>
     <item
         android:id="@+id/beahost"
         android:title="Be A Host"
-        android:icon="@drawable/makemytrip"/>
+        android:icon="@drawable/key_password"/>
 </menu>
