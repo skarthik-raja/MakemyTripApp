@@ -32,11 +32,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/lightgrey">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -45,7 +46,6 @@
             android:layout_height="100dp"
             android:layout_marginTop="70dp"
             app:cardCornerRadius="20dp"
-            android:backgroundTint="@color/white"
             app:layout_constraintStart_toEndOf="parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
@@ -101,131 +101,130 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView2"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="100dp"
-                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
+                            android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
                             android:src="@drawable/airplane_svgrepo_com__2_" />
 
                         <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="12dp"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
                             android:text="Flights"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView3"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="100dp"
-                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
+                            android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
                             android:src="@drawable/house" />
 
                         <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="12dp"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
                             android:text="House"
+                            android:layout_marginStart="7dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView4"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="100dp"
-                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
+                            android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
                             android:src="@drawable/holidays" />
 
                         <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="5dp"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
                             android:text="Holidays"
+                            android:layout_marginStart="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView5"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
                     app:cardCornerRadius="18dp">
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="80dp"
                         android:layout_height="100dp"
-                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
+                            android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
                             android:src="@drawable/trains" />
 
                         <TextView
-                            android:layout_width="100dp"
+                            android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:text="Trains/Bus"
+                            android:layout_gravity="center"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -247,6 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
+                android:background="@drawable/curved_shape_background_dropdown"
                 android:nestedScrollingEnabled="true"
                 tools:listitem="@layout/item_recycler" />
 
@@ -255,6 +255,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/baseline_arrow_drop_down_24"
+                android:background="@drawable/curved_shaped_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
@@ -277,6 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Offers"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
@@ -286,6 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View All"
+                android:layout_marginEnd="12dp"
                 android:textStyle="bold"
                 android:textColor="@color/blue"
                 android:textSize="18sp"/>
@@ -296,6 +299,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:nestedScrollingEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/offerslayout"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -303,12 +307,12 @@
                 tools:ignore="MissingConstraints"
                 tools:listitem="@layout/textview_items" />
 
-
             <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/text_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
             android:nestedScrollingEnabled="true"
             app:layout_constraintTop_toBottomOf="@+id/offerslayout2"
             tools:ignore="MissingConstraints"
@@ -348,6 +352,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View All"
+                    android:layout_marginEnd="12dp"
                     android:textStyle="bold"
                     android:textColor="@color/blue"
                     android:textSize="18sp"/>
@@ -361,17 +366,17 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view1"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="true"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginStart="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/offerslayout1"
-            tools:ignore="MissingConstraints"
-            tools:listitem="@layout/stay_item" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:nestedScrollingEnabled="true"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/offerslayout1"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -381,12 +386,378 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="12dp" />
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/grid_recyclerview"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/grid_item"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="What's New"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabMode="fixed"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="60dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="12dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        tools:listitem="@layout/item_layout"
+                        android:orientation="horizontal" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Discover more than travel"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:textSize="18sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/people_svgrepo_com" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Refer and Earn"
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ticket_svgrepo_com" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="PNR Status"
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/flight_ticket_svgrepo_com" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Flight Status"
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay Later"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/textViewTopLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Book your trip @ 0"
+                            android:textColor="@color/black"/>
+
+                        <ImageView
+                            android:id="@+id/ImageviewTopRight"
+                            android:layout_width="90dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="22dp"
+                            android:src="@drawable/tripmoney" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Get intrest FREE credit limit of up to 60,000 within seconds"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="15sp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/blue"
+                            android:text="Learn More" />
+
+                        <Button
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:backgroundTint="@color/blue"
+                            android:background="@drawable/box_shape_background"
+                            android:text="Login TO CHECK ELEIGIBILITY"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exculsive Partners"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="12dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                android:nestedScrollingEnabled="true"
+                tools:ignore="MissingConstraints"
+                tools:listitem="@layout/exclsive_partners" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For Your Stay in Chennai"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/black"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/card_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20dp"
+                android:nestedScrollingEnabled="true"
+                tools:ignore="MissingConstraints"
+                tools:listitem="@layout/cardview_layout" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:id="@+id/stories"
+                app:layout_constraintTop_toBottomOf="@+id/text_recyclerview"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/storylefttext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:text="Stories By Travellers"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/storyrighttext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View All"
+                        android:textStyle="bold"
+                        android:drawableEnd="@drawable/rightarrow"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        android:layout_marginTop="20dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                android:layout_marginTop="20dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/cardimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/travel" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/storycards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20dp"
+                android:nestedScrollingEnabled="true"
+                tools:ignore="MissingConstraints" />
 
         </LinearLayout>
 

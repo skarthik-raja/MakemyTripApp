@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MytripsFragment">
+    android:layout_height="match_parent">
 
     <com.hbb20.CountryCodePicker
-        android:id="@+id/countyCodePicker"
+        android:id="@+id/trip_countyCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/phoneNumberEditText"
+        android:id="@+id/trip_mobile"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="38dp"
@@ -28,11 +27,11 @@
         android:inputType="phone"
         android:padding="10dp"
         android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/mytrips_button"
-        app:layout_constraintStart_toEndOf="@+id/countyCodePicker" />
+        app:layout_constraintBottom_toTopOf="@+id/trip_button"
+        app:layout_constraintStart_toEndOf="@+id/trip_countyCode" />
 
     <Button
-        android:id="@+id/mytrips_button"
+        android:id="@+id/trip_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -47,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countyCodePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/trip_countyCode" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,10 +58,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mytrips_button" />
+        app:layout_constraintTop_toBottomOf="@+id/trip_button" />
 
     <LinearLayout
-        android:id="@+id/icon"
+        android:id="@+id/trip_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -71,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mytrips_button"
+        app:layout_constraintTop_toBottomOf="@+id/trip_button"
         app:layout_constraintVertical_bias="0.191">
 
 
@@ -92,7 +91,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/refralltext"
+        android:id="@+id/trip_referal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Have a Referral code ?"
@@ -102,11 +101,11 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/icon"
+        app:layout_constraintTop_toBottomOf="@+id/trip_icon"
         tools:layout_editor_absoluteY="412dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tripfragmenttextview"
         android:layout_width="347dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
@@ -114,7 +113,7 @@
         android:text="By procedding, you agree to MakeMyTrip's Privacy policy, User Agreement,TandCs as well as Mobile Connect's TandCs"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refralltext"
+        app:layout_constraintTop_toBottomOf="@+id/trip_referal"
         tools:ignore="MissingConstraints" />
 
 

@@ -46,9 +46,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation ("com.google.android.material:material:1.5.0")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("io.github.ahmad-hamwi:tabsync:1.0.1")
+
+    implementation ("com.google.android.material:material:1.4.0")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
 
     implementation ("androidx.legacy:legacy-support-v4:1.0.0")
     implementation ("androidx.navigation:navigation-fragment-ktx:2.4.1")

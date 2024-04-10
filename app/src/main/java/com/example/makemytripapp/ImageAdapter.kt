@@ -1,30 +1,32 @@
-package com.example.makemytripapp
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.makemytripapp.R
 
-class ImageAdapter(private val dataList: List<Int>) :
-    RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+class ImageAdapter(private var dataList: List<Int>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_recyclerview_horizontal, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview_horizontal, parent, false)
+        return ImageViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = dataList[position]
-        holder.bind(item)
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        val imageResource = dataList[position]
+        holder.bind(imageResource)
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setData(images: List<Int>) {
+        dataList = images
+        notifyDataSetChanged()
+    }
+
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.image_view_icon)
 
         fun bind(imageResource: Int) {

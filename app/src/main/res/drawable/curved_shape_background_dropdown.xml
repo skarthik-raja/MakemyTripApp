@@ -1,4 +1,15 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white"/> <!-- Change color as needed -->
-    <corners android:radius="26dp"/>
+    <solid android:color="@color/white"/>
+    <corners android:radius="30dp"/>
+
+    <shape android:shape="rectangle">
+
+        <corners android:bottomRightRadius="1dp"/>
+
+        <gradient
+            android:angle="0"
+            android:endColor="@color/white"
+            android:startColor="@color/white"
+            android:type="radial" />
+    </shape>
 </shape>
