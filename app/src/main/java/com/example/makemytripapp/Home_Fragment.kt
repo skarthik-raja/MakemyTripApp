@@ -1,6 +1,8 @@
 package com.example.makemytripapp
 
+import ImageAdapter
 import RecyclerAdapter
+import RecyclerAdapter1
 import RecyclerData
 import TextAdapter
 import android.os.Bundle
@@ -9,23 +11,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.tabs.TabLayout
 
 
 class Home_Fragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: RecyclerAdapter
     private lateinit var dropdownIcon: ImageView
+    private lateinit var tabLayout1: TabLayout
+    private lateinit var recyclerView3:RecyclerView
+    private lateinit var recyclerView4:RecyclerView
+    private lateinit var adapter1: TabAdapter
+    private lateinit var adapter3:CardViewAdapter
+
+    private lateinit var recyclerview5:RecyclerView
+    private lateinit var storyAdapter: StoryAdapter
+    private lateinit var list: ArrayList<Int>
+
+    private lateinit var exclusiveAdapter:ExclisveImageAdapter
+    private lateinit var imagesList: MutableList<Int>
+    private lateinit var dataList1: List<Pair<String, Int>> // Data list for initial images
+
+
+
+    lateinit var imageAdapter: ImageAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_, container, false)
+
+
         recyclerView = view.findViewById(R.id.rv_design)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
         recyclerAdapter = RecyclerAdapter(requireContext())
@@ -33,15 +58,69 @@ class Home_Fragment : Fragment() {
         recyclerAdapter.updateDataset(getAdditionalItems())
         dropdownIcon = view.findViewById(R.id.drop_icon)
 
+        recyclerView = view.findViewById(R.id.recyclerViewcard)
+        tabLayout1 = view.findViewById(R.id.tabLayout1)
+
+        adapter1 = TabAdapter(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapter1
+
+        setupTabLayout()
+
+        recyclerView3 = view.findViewById(R.id.image_recyclerview)
+        recyclerView3.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val exclusiveImagesList = mutableListOf(
+            R.drawable.amazon,
+            R.drawable.hdfc,
+            R.drawable.samsung
+        )
+
+        exclusiveAdapter = ExclisveImageAdapter(requireContext(), exclusiveImagesList)
+        recyclerView3.adapter = exclusiveAdapter
+
+        recyclerView4 = view.findViewById(R.id.card_recycler)
+        recyclerView4.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        val dataList = listOf(
+            CardData(R.drawable.thepark, "The Park Chennai", "gangai Karai Puram ★ ★ ★ ★ ★", "Per Night ₹10,000"),
+            CardData(R.drawable.gingerhotel, "Ginger Chennai OMR", "OMR chennai★ ★ ★ ★ ", "Per Night ₹15,000"),
+            CardData(R.drawable.holidayinn, "HolidayInn", "Omr Road Thoraipakkam★ ★ ★  ", "Per Day ₹20,000")
+        )
+
+        adapter3 = CardViewAdapter(dataList)
+        recyclerView4.adapter = adapter3
+
+
+        recyclerview5 = view.findViewById(R.id.storycards)
+        recyclerview5.setHasFixedSize(true)
+
+        val list = ArrayList<Pair<Int, String>>()
+        list.add(Pair(R.drawable.chennaitravel, "South India Chennai"))
+        list.add(Pair(R.drawable.travel1, "Photography"))
+        list.add(Pair(R.drawable.travel2, "Travel Journey is going to Start"))
+        list.add(Pair(R.drawable.travel3, "Explore the world"))
+        list.add(Pair(R.drawable.travel4, "Banglore India"))
+        list.add(Pair(R.drawable.travel5, "Singapore"))
+        list.add(Pair(R.drawable.bangkok, "Bangkok"))
+
+        storyAdapter = StoryAdapter(list)
+        recyclerview5.adapter = storyAdapter
+        recyclerview5.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
         val textRecyclerView: RecyclerView = view.findViewById(R.id.textview_recycler)
-        val textAdapter = TextAdapter(getTextDataList())
+        val textAdapter = TextAdapter(getTextDataList()) { text ->
+            loadImages(text)
+        }
         textRecyclerView.adapter = textAdapter
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         textRecyclerView.layoutManager = layoutManager
 
         val imageRecyclerView: RecyclerView = view.findViewById(R.id.text_recyclerview)
-        val imageAdapter = ImageAdapter(getDataList().map { it.second })
+        dataList1 = getDataList()
+        val initialImageList = dataList1.map { it.second }
+        imageAdapter = ImageAdapter(initialImageList)
         imageRecyclerView.adapter = imageAdapter
         val horizontalLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         imageRecyclerView.layoutManager = horizontalLayoutManager
@@ -74,7 +153,6 @@ class Home_Fragment : Fragment() {
         val adapter = GridAdapter(requireContext(), imageList)
         recyclerView.adapter = adapter
 
-
         var isExpanded = false
         dropdownIcon.setOnClickListener {
             Log.d("HomeFragment", "Button is clicked")
@@ -91,6 +169,56 @@ class Home_Fragment : Fragment() {
         return view
     }
 
+
+    private fun setupTabLayout() {
+        tabLayout1.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    when (it.position) {
+                        0 -> adapter1.setData(getAnnouncementItems())
+                        1 -> adapter1.setData(getTravelNewsItems())
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
+        tabLayout1.addTab(tabLayout1.newTab().setText("Announcement"))
+        tabLayout1.addTab(tabLayout1.newTab().setText("Travel News"))
+    }
+    private fun loadImages(text: String) {
+        val images = when (text) {
+            "Hotels" -> dataList1.filter { it.first == "Hotels" }.map { it.second }
+            "Flights" -> dataList1.filter { it.first == "Flights" }.map { it.second }
+            "Bus" -> dataList1.filter { it.first == "Bus" }.map { it.second }
+            "Cabs" -> dataList1.filter { it.first == "Cabs" }.map { it.second }
+            "Rails" -> dataList1.filter { it.first == "Rails" }.map { it.second }
+            "Trending" -> dataList1.filter { it.first == "Trending" }.map { it.second }
+            "Holiday" -> dataList1.filter { it.first == "Holiday" }.map { it.second }
+            else -> emptyList()
+        }
+        imageAdapter.setData(images)
+    }
+
+
+    private fun getAnnouncementItems(): List<YourDataModel> {
+        return listOf(
+            YourDataModel("For Business class Bookings: explore our dedicated business class pages & pick the best flight", R.drawable.vipbusiness),
+            YourDataModel("Book Flights with voice chat! Code:MMTMYRA will be auto-applied for EXTRA discounts!", R.drawable.robotchat),
+            YourDataModel("Finding Indian Food just got : Use newly launched filters to find indian food during International trade",R.drawable.foodindian)
+        )
+    }
+
+    private fun getTravelNewsItems(): List<YourDataModel> {
+        return listOf(
+            YourDataModel("International Flights Now Call 0124-4628747 for booking assistance", R.drawable.airplane_svgrepo_com__2_),
+            YourDataModel("Wish to travel Abroad? Tap here to check the international destinations open for indians now", R.drawable.airplane_svgrepo_com__2_),
+            YourDataModel("By many Indian states, check revised RT-PCR guidelines for travel",R.drawable.flaticon)
+            // Add more items as needed
+        )
+    }
     private fun getInitialItems(): List<RecyclerData> {
         return listOf(
             RecyclerData("Car", R.drawable.car, false, true),
@@ -101,7 +229,7 @@ class Home_Fragment : Fragment() {
             RecyclerData("Hourly Stays", R.drawable.hourlystays, false, true),
             RecyclerData("Nearby Staycations", R.drawable.bags, false, true),
             RecyclerData("Travel Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("Flight Status", R.drawable.car, false, true),
+            RecyclerData("Flight Status", R.drawable.flight_ticket_svgrepo_com, false, true),
             RecyclerData("Holidays", R.drawable.holidays, false, true),
             RecyclerData("House", R.drawable.house, false, true),
             RecyclerData("Taxi", R.drawable.taxi, false, true)
@@ -118,7 +246,7 @@ class Home_Fragment : Fragment() {
             RecyclerData("Hourly Stays", R.drawable.hourlystays, false, true),
             RecyclerData("Nearby Staycations", R.drawable.bags, false, true),
             RecyclerData("Travel Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("Flight Status", R.drawable.car, false, false),
+            RecyclerData("Flight Status", R.drawable.flight_ticket_svgrepo_com, false, false),
             RecyclerData("Holidays", R.drawable.holidays, false, false),
             RecyclerData("House", R.drawable.house, false, false),
             RecyclerData("Taxi", R.drawable.taxi, false, false)
@@ -132,21 +260,22 @@ class Home_Fragment : Fragment() {
             "Flights" to R.drawable.flightimages,
             "Rails" to R.drawable.trainimages,
             "Cabs" to R.drawable.cabsimages,
-            "Bus" to R.drawable.busimages
+            "Bus" to R.drawable.busimages,
+            "Holiday" to R.drawable.travel
         )
     }
 
     private fun getStayDataList(): List<StaySite> {
         return listOf(
-            StaySite("Vivanta Surajikund,   11,151 " +
-                    "NCR     Per night " +
-                    "Faridabad ", R.drawable.hotelvivanta),
-            StaySite("Taj Palace,New,       14,751 " +
-                    "Delhi           per night " +
-                    "Delhi", R.drawable.tajhotel),
-            StaySite("Radisson Hotel,      4,458 " +
-                    "Agra          per night  " +
-                    "Agra ", R.drawable.radisonhotel),
+            StaySite("Vivanta Surajikund,       ₹11,151   " +
+                    "NCR   Per night   " +
+                    "        Faridabad ", R.drawable.hotelvivanta),
+            StaySite("Taj Palace,New,           ₹14,751 " +
+                    "Delhi    per night   " +
+                    "         Delhi", R.drawable.tajhotel),
+            StaySite("Radisson Hotel,           ₹4,458    " +
+                    "Agra    per night  " +
+                    "         Agra ", R.drawable.radisonhotel),
         )
     }
 

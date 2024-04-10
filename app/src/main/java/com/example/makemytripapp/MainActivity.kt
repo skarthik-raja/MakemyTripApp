@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.mytripsfragment)
                     true
                 }
+                R.id.tripmoney->{
+                    navController.navigate(R.id.tripmoneyfragment)
+                    true
+                }
                 else -> false
             }
         }

@@ -57,6 +57,24 @@
         android:id="@+id/mytripsfragment"
         android:name="com.example.makemytripapp.MytripsFragment"
         android:label="MyTrips Fragment"
-        tools:layout="@layout/fragment_mytrips"/>
+        tools:layout="@layout/fragment_mytrips">
+
+        <action
+            android:id="@+id/action_mytripsfragmet_to_Trips"
+            app:destination="@+id/Trips"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/Trips"
+        android:name="com.example.makemytripapp.MyTripFragment"
+        android:label="My Trip Fragment"
+        tools:layout="@layout/fragment_my_trip"/>
+
+    <fragment
+        android:id="@+id/tripmoneyfragment"
+        android:name="com.example.makemytripapp.TripMoneyFragment"
+        android:label="Trip Fragment"
+        tools:layout="@layout/fragment_trip_money"/>
+
 
 </navigation>
