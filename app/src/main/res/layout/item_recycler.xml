@@ -12,23 +12,25 @@
     <LinearLayout
         android:id="@+id/ll_design"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5dp"
         tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/iv_image1"
-            android:layout_width="52dp"
-            android:layout_height="64dp"
-            android:src="@drawable/car"/>
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@drawable/car" />
 
         <TextView
             android:id="@+id/tv_text1"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:text="Text 1"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
     </LinearLayout>
 

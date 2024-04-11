@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.tripmoneyfragment)
                     true
                 }
+                R.id.where2go->{
+                    navController.navigate(R.id.gofragment)
+                    true
+                }
                 else -> false
             }
         }

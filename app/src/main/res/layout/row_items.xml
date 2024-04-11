@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Airport Cabs"
+            android:textSize="12sp"
             android:layout_below="@+id/gridimage_1"/>
     </RelativeLayout>
 

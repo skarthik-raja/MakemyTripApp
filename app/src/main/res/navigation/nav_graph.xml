@@ -76,5 +76,11 @@
         android:label="Trip Fragment"
         tools:layout="@layout/fragment_trip_money"/>
 
+    <fragment
+        android:id="@+id/gofragment"
+        android:name="com.example.makemytripapp.GoFragment"
+        android:label="Go Fragment"
+        tools:layout="@layout/fragment_go"/>
+
 
 </navigation>

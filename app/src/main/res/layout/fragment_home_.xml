@@ -18,15 +18,16 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/material_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/twotone_menu_24"
+            android:layout_height="74dp"
+            android:background="@color/white"
             app:menu="@menu/appbarmenu"
-            android:background="@color/white">
+            app:navigationIcon="@drawable/twotone_menu_24">
 
             <ImageView
                 android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/makemytrip"/>
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/makemytrip" />
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,7 +45,7 @@
             android:id="@+id/cardView1"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="85dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintStart_toEndOf="parent"
             android:layout_marginStart="12dp"
@@ -104,9 +105,9 @@
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="18dp">
+                    app:cardCornerRadius="15dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -124,6 +125,7 @@
                             android:layout_width="50dp"
                             android:layout_height="20dp"
                             android:text="Flights"
+                            android:layout_marginStart="5dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
@@ -136,9 +138,9 @@
                     android:id="@+id/cardView3"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="18dp">
+                    app:cardCornerRadius="15dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -169,9 +171,9 @@
                     android:id="@+id/cardView4"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="7dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="18dp">
+                    app:cardCornerRadius="15dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -189,7 +191,7 @@
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:text="Holidays"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="13dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
@@ -204,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="18dp">
+                    app:cardCornerRadius="15dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -246,16 +248,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/curved_shape_background_dropdown"
+                android:background="@drawable/curved_shaped_background"
                 android:nestedScrollingEnabled="true"
                 tools:listitem="@layout/item_recycler" />
 
             <ImageView
                 android:id="@+id/drop_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/baseline_arrow_drop_down_24"
-                android:background="@drawable/curved_shaped_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trapezoid_shape"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
@@ -337,7 +338,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:text="Staycations"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="8dp"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -366,34 +367,59 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view1"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/left_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/leftarrow"
+                    android:onClick="onLeftArrowClicked" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/left_arrow"
+                    android:layout_toStartOf="@id/right_arrow"
+                    android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="20dp"
                 android:nestedScrollingEnabled="true"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/offerslayout1"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                tools:listitem="@layout/stay_item" />
+
+                <ImageView
+                    android:id="@+id/right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rightarrow"
+                    android:onClick="onRightArrowClicked" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Flagship Hotel Stores"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/grid_recyclerview"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/grid_item"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"/>
 
@@ -404,7 +430,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="@color/black"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginTop="20dp"/>
 
@@ -417,6 +443,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:tabMode="fixed"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"/>
 
@@ -563,7 +590,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -669,7 +698,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:textColor="@color/black"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -732,7 +761,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 app:cardUseCompatPadding="true"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
