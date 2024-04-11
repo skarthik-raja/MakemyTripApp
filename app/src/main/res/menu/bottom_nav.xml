@@ -12,7 +12,7 @@
         android:icon="@drawable/baseline_shopping_bag_24"/>
 
     <item
-        android:id="@+id/Wheremenu"
+        android:id="@+id/where2go"
         android:title="Where2Go"
         android:icon="@drawable/destination"/>
 

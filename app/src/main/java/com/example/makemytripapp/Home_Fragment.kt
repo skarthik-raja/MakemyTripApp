@@ -91,7 +91,6 @@ class Home_Fragment : Fragment() {
         adapter3 = CardViewAdapter(dataList)
         recyclerView4.adapter = adapter3
 
-
         recyclerview5 = view.findViewById(R.id.storycards)
         recyclerview5.setHasFixedSize(true)
 
@@ -130,6 +129,19 @@ class Home_Fragment : Fragment() {
         stayRecyclerView.adapter = stayAdapter
         val stayLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         stayRecyclerView.layoutManager = stayLayoutManager
+
+        val leftArrow = view.findViewById<ImageView>(R.id.left_arrow)
+        val rightArrow = view.findViewById<ImageView>(R.id.right_arrow)
+
+        leftArrow.setOnClickListener {
+            val layoutManager = stayRecyclerView.layoutManager as LinearLayoutManager
+            layoutManager.scrollToPositionWithOffset(layoutManager.findFirstVisibleItemPosition() - 1, 0)
+        }
+
+        rightArrow.setOnClickListener {
+            val layoutManager = stayRecyclerView.layoutManager as LinearLayoutManager
+            layoutManager.scrollToPositionWithOffset(layoutManager.findLastVisibleItemPosition() + 1, 0)
+        }
 
         val verticalLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -221,15 +233,15 @@ class Home_Fragment : Fragment() {
     }
     private fun getInitialItems(): List<RecyclerData> {
         return listOf(
-            RecyclerData("Car", R.drawable.car, false, true),
-            RecyclerData("HomeStays & villas", R.drawable.house, false, true),
-            RecyclerData("Outstation cabs", R.drawable.taxi, false, true),
-            RecyclerData("Forex Card & Currency", R.drawable.card, false, true),
-            RecyclerData("Gift Cards", R.drawable.gift, false, true),
-            RecyclerData("Hourly Stays", R.drawable.hourlystays, false, true),
-            RecyclerData("Nearby Staycations", R.drawable.bags, false, true),
-            RecyclerData("Travel Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("Flight Status", R.drawable.flight_ticket_svgrepo_com, false, true),
+            RecyclerData("Cab", R.drawable.car, false, true),
+            RecyclerData("HomeStays", R.drawable.house, false, true),
+            RecyclerData("Outstation  cabs", R.drawable.taxi, false, true),
+            RecyclerData("ForexCard& Currency", R.drawable.card, false, true),
+            RecyclerData("GiftCards", R.drawable.gift, false, true),
+            RecyclerData("HourlyStays", R.drawable.hourlystays, false, true),
+            RecyclerData("NearbyStaycations", R.drawable.bags, false, true),
+            RecyclerData("Travel    Insurance", R.drawable.travelinsurance, false, true),
+            RecyclerData("FlightStatus", R.drawable.flight_ticket_svgrepo_com, false, true),
             RecyclerData("Holidays", R.drawable.holidays, false, true),
             RecyclerData("House", R.drawable.house, false, true),
             RecyclerData("Taxi", R.drawable.taxi, false, true)
@@ -238,15 +250,15 @@ class Home_Fragment : Fragment() {
 
     private fun getAdditionalItems(): List<RecyclerData> {
         return listOf(
-            RecyclerData("Car", R.drawable.car, false, true),
-            RecyclerData("HomeStays & villas", R.drawable.house, false, true),
-            RecyclerData("Outstation cabs", R.drawable.taxi, false, true),
-            RecyclerData("Forex Card & Currency", R.drawable.card, false, true),
-            RecyclerData("Gift Cards", R.drawable.gift, false, true),
-            RecyclerData("Hourly Stays", R.drawable.hourlystays, false, true),
-            RecyclerData("Nearby Staycations", R.drawable.bags, false, true),
-            RecyclerData("Travel Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("Flight Status", R.drawable.flight_ticket_svgrepo_com, false, false),
+            RecyclerData("Cab", R.drawable.car, false, true),
+            RecyclerData("HomeStays", R.drawable.house, false, true),
+            RecyclerData("Outstation  cabs", R.drawable.taxi, false, true),
+            RecyclerData("ForexCard& Currency", R.drawable.card, false, true),
+            RecyclerData("GiftCards", R.drawable.gift, false, true),
+            RecyclerData("HourlyStays", R.drawable.hourlystays, false, true),
+            RecyclerData("NearbyStaycations", R.drawable.bags, false, true),
+            RecyclerData("Travel   Insurance", R.drawable.travelinsurance, false, true),
+            RecyclerData("FlightStatus", R.drawable.flight_ticket_svgrepo_com, false, false),
             RecyclerData("Holidays", R.drawable.holidays, false, false),
             RecyclerData("House", R.drawable.house, false, false),
             RecyclerData("Taxi", R.drawable.taxi, false, false)
