@@ -5,6 +5,7 @@ import RecyclerAdapter
 import RecyclerAdapter1
 import RecyclerData
 import TextAdapter
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -181,11 +183,14 @@ class Home_Fragment : Fragment() {
         return view
     }
 
-
     private fun setupTabLayout() {
         tabLayout1.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
+                    // Change the background drawable of the entire tab when selected
+                    val tabView = tab.view
+                    tabView.background = ContextCompat.getDrawable(requireContext(), R.drawable.tab_outline_background)
+
                     when (it.position) {
                         0 -> adapter1.setData(getAnnouncementItems())
                         1 -> adapter1.setData(getTravelNewsItems())
@@ -193,13 +198,23 @@ class Home_Fragment : Fragment() {
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    // Reset the background drawable of the tab when unselected
+                    val tabView = tab.view
+                    tabView.background = null
+                }
+            }
+
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
+        // Add tabs
         tabLayout1.addTab(tabLayout1.newTab().setText("Announcement"))
         tabLayout1.addTab(tabLayout1.newTab().setText("Travel News"))
     }
+
+
     private fun loadImages(text: String) {
         val images = when (text) {
             "Hotels" -> dataList1.filter { it.first == "Hotels" }.map { it.second }
@@ -217,15 +232,15 @@ class Home_Fragment : Fragment() {
 
     private fun getAnnouncementItems(): List<YourDataModel> {
         return listOf(
-            YourDataModel("For Business class Bookings: explore our dedicated business class pages & pick the best flight", R.drawable.vipbusiness),
-            YourDataModel("Book Flights with voice chat! Code:MMTMYRA will be auto-applied for EXTRA discounts!", R.drawable.robotchat),
+            YourDataModel("For Business class Bookings:    Explore our dedicated business class pages & pick the best flight", R.drawable.vipbusiness),
+            YourDataModel("Book Flights with voice chat! Code:  MMTMYRA will be auto-applied for EXTRA discounts!", R.drawable.robotchat),
             YourDataModel("Finding Indian Food just got : Use newly launched filters to find indian food during International trade",R.drawable.foodindian)
         )
     }
 
     private fun getTravelNewsItems(): List<YourDataModel> {
         return listOf(
-            YourDataModel("International Flights Now Call 0124-4628747 for booking assistance", R.drawable.airplane_svgrepo_com__2_),
+            YourDataModel("International Flights Now Call 0124-462     8747 for booking assistance", R.drawable.airplane_svgrepo_com__2_),
             YourDataModel("Wish to travel Abroad? Tap here to check the international destinations open for indians now", R.drawable.airplane_svgrepo_com__2_),
             YourDataModel("By many Indian states, check revised RT-PCR guidelines for travel",R.drawable.flaticon)
             // Add more items as needed

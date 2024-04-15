@@ -18,7 +18,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/material_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             app:menu="@menu/appbarmenu"
             app:navigationIcon="@drawable/twotone_menu_24">
@@ -26,8 +26,8 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/makemytrip" />
+
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -105,9 +105,9 @@
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -138,9 +138,9 @@
                     android:id="@+id/cardView3"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -171,9 +171,9 @@
                     android:id="@+id/cardView4"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="7dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -204,9 +204,9 @@
                     android:id="@+id/cardView5"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="80dp"
@@ -456,7 +456,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="80dp"
                         android:clipToPadding="false"
                         android:scrollbars="none"
                         android:layout_marginStart="10dp"
