@@ -31,7 +31,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding = true
+        viewBinding {
+            enable= true
+        }
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -57,6 +59,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.4.1")
     implementation ("androidx.navigation:navigation-ui-ktx:2.4.1")
 
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("com.hbb20:ccp:2.5.1")
     testImplementation("junit:junit:4.13.2")
