@@ -293,6 +293,12 @@
                 android:textStyle="bold"
                 android:textColor="@color/blue"
                 android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/rightarrow_home2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/right_arrow"/>
         </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -357,6 +363,12 @@
                     android:textStyle="bold"
                     android:textColor="@color/blue"
                     android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/rightarrow_home"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/right_arrow"/>
             </LinearLayout>
 
             <TextView

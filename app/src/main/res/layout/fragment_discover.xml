@@ -196,13 +196,128 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/place_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/nearbytext"
         tools:listitem="@layout/places_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:id="@+id/discoverplaceslayout"
+            app:layout_constraintTop_toBottomOf="@+id/place_recyclerview"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/discovertext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Discover by Interest"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/viewtextgofragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:layout_marginEnd="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:id="@+id/rightarrowgofragment"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/right_arrow"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discover_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/discoverplaceslayout"
+            tools:listitem="@layout/discover_places"/>
+
+        <TextView
+            android:id="@+id/triptext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Which trip would you love you go on ?"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discover_recycle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tripcards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="true"
+            tools:listitem="@layout/trip_cards"
+            app:layout_constraintTop_toBottomOf="@+id/triptext"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/editortext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editor's pick of the day"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tripcards" />
+
+        <TextView
+            android:id="@+id/editortitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best picks for your bucket list"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editortext" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videocards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="true"
+            tools:listitem="@layout/video_items"
+            app:layout_constraintTop_toBottomOf="@+id/editortitle"
+            tools:ignore="MissingConstraints" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
