@@ -40,8 +40,10 @@ class TextAdapter(private val dataList: List<String>, private val onItemClick: (
             }
 
             itemView.setOnClickListener {
+                val previousSelected = selectedItemIndex
                 selectedItemIndex = adapterPosition
-                notifyDataSetChanged()
+                notifyItemChanged(previousSelected)
+                notifyItemChanged(selectedItemIndex)
 
                 onItemClick(text)
             }

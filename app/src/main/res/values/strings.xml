@@ -2,5 +2,7 @@
     <string name="app_name">MakeMyTripApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string name="default_web_client_id">853722234837-oqu0t0l3p8jviknadm2g6m48vqdpc99f.apps.googleusercontent.com</string>
 
 </resources>
