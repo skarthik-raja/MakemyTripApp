@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
 
+
 }
 
 android {
@@ -33,10 +34,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding {
-            dataBinding=true
-            enable= true
-        }
+       dataBinding = true
+        viewBinding = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -76,10 +75,6 @@ dependencies {
 
 
 
-
-    implementation("com.google.firebase:firebase-auth:22.3.1")
-
-    implementation("com.google.android.gms:play-services-auth:21.0.0")
 
 
 

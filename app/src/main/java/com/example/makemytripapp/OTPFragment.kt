@@ -24,5 +24,4 @@ class OTPFragment : Fragment() {
         }
         return view
     }
-
 }

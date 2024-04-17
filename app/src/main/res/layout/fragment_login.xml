@@ -95,6 +95,7 @@
                 android:text="CONTINUE"
                 android:textColor="@color/white"
                 android:textSize="17sp"
+                android:onClick="onContinueButtonClick"
                 app:backgroundTint="@color/blue"
                 app:shapeAppearanceOverlay="@style/Button5" />
 
