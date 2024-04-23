@@ -33,13 +33,7 @@
 
         <action
             android:id="@+id/action_loginFragment_to_otpFragment"
-            app:destination="@+id/otpFragment"/>
-
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/home_Fragment_" />
-
-
+            app:destination="@id/otpFragment" />
 
     </fragment>
 

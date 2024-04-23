@@ -1,5 +1,3 @@
-package com.example.makemytripapp
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +5,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.makemytripapp.MyPlaceStoryData
+import com.example.makemytripapp.R
 
-class MyAdapter(private val context: Context, private val dataList: List<MyData>) :
-    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class placesstoryAdapter(private val context: Context, private val dataList: List<MyPlaceStoryData>) :
+    RecyclerView.Adapter<placesstoryAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.place_stories, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.place_stories, parent, false)
         return MyViewHolder(view)
     }
 
@@ -36,10 +35,3 @@ class MyAdapter(private val context: Context, private val dataList: List<MyData>
         val textView3: TextView = itemView.findViewById(R.id.textView3)
     }
 }
-
-data class MyData(
-    val imageRes: Int,
-    val text1: String,
-    val text2: String,
-    val text3: String
-)
