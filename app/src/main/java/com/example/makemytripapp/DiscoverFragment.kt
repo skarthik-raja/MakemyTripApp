@@ -35,7 +35,6 @@ class DiscoverFragment : Fragment() {
         val adapter = PlaceAdapter(requireContext(), getDummyPlaces())
         placeRecyclerView.adapter = adapter
 
-
         placeRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         val discoverrecycle: RecyclerView = view.findViewById(R.id.discover_recycle)
@@ -53,14 +52,13 @@ class DiscoverFragment : Fragment() {
         recyclerViewtrip.adapter = tripAdapter
 
         videoRecyclerView = view.findViewById(R.id.videocards)
-        videoRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        videoRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         val videoUris = getVideoUris()
 
         videoAdapter = VideoAdapter(requireContext(), videoUris)
         videoRecyclerView.adapter = videoAdapter
-
-
+        
         return view
     }
 
