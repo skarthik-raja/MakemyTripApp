@@ -5,15 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import placesstoryAdapter
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class TravelStoriesFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MyAdapter
-    private lateinit var dataList: MutableList<MyData>
+    private lateinit var adapter: placesstoryAdapter
+    private lateinit var dataList: MutableList<MyPlaceStoryData>
+
+    private lateinit var recyclerViewstory: RecyclerView
+    private lateinit var adapterstory: StoriesAdapter
+    private val storiesList = ArrayList<StoryModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,26 +26,58 @@ class TravelStoriesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_travel_stories, container, false)
 
+
         recyclerView = view.findViewById(R.id.travel_neweststories)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
 
         dataList = mutableListOf(
-            MyData(
-                R.drawable.travel5,
-                "Text 1 for Image 1",
-                "Text 2 for Image 1",
-                "Text 3 for Image 1"
+            MyPlaceStoryData(
+                R.drawable.dubai,
+                "Dubai",
+                "Safvanbhai",
+                "13 mins ago"
             ),
-            MyData(
-                R.drawable.travel1,
-                "Text 1 for Image 2",
-                "Text 2 for Image 2",
-                "Text 3 for Image 2"
+            MyPlaceStoryData(
+                R.drawable.mahabalipuram,
+                "Mahabalipuram",
+                "manali",
+                "13h ago"
             ),
+            MyPlaceStoryData(
+                R.drawable.marina,
+                "Marina",
+                "Beach",
+                "1h ago"
+            ),
+            MyPlaceStoryData(
+                R.drawable.radisonhotel,
+                "Nepal",
+                "Sachin",
+                "20h ago"
+            )
         )
 
-        adapter = MyAdapter(requireContext(), dataList)
+        adapter = placesstoryAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
+
+
+        val recyclerViewtravel: RecyclerView = view.findViewById(R.id.travellers_items)
+        recyclerViewtravel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val dataList = listOf("All", "Adventure", "Beach","Food","Relaxation","Hills & Mountains","Wildlife","Trek")
+        val adapter = TravellerslistAdapter(dataList)
+        recyclerViewtravel.adapter = adapter
+
+        recyclerViewstory = view.findViewById(R.id.reels_stories)
+        recyclerViewstory.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        storiesList.add(StoryModel(R.drawable.travel, "Fabulous Trip"))
+        storiesList.add(StoryModel(R.drawable.international, "Explore the world"))
+        storiesList.add(StoryModel(R.drawable.chennaitravel,"M.G.R"))
+
+        adapterstory = StoriesAdapter(requireActivity(), storiesList)
+        recyclerViewstory.adapter = adapterstory
 
         return view
     }

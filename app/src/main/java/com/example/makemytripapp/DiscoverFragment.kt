@@ -1,11 +1,14 @@
 package com.example.makemytripapp
 
 import PlaceAdapter
+import VideoAdapter
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.VideoView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +21,8 @@ class DiscoverFragment : Fragment() {
     private lateinit var videoRecyclerView: RecyclerView
     private lateinit var videoAdapter: VideoAdapter
 
-    private var currentItemPosition = 0
-
-
+    var videoView:VideoView?=null
+    var mediaController:MediaController?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,22 +30,20 @@ class DiscoverFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_discover, container, false)
 
-        //place
         val placeRecyclerView: RecyclerView = view.findViewById(R.id.place_recyclerview)
 
         val adapter = PlaceAdapter(requireContext(), getDummyPlaces())
         placeRecyclerView.adapter = adapter
 
+
         placeRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        //interset
         val discoverrecycle: RecyclerView = view.findViewById(R.id.discover_recycle)
 
         val adapter3 = InterestAdapter(getInterestplaces())
         discoverrecycle.adapter = adapter3
 
         discoverrecycle.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
 
         val recyclerViewtrip: RecyclerView = view.findViewById(R.id.tripcards)
         recyclerViewtrip.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -52,13 +52,10 @@ class DiscoverFragment : Fragment() {
 
         recyclerViewtrip.adapter = tripAdapter
 
-
         videoRecyclerView = view.findViewById(R.id.videocards)
         videoRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
         val videoUris = getVideoUris()
-
 
         videoAdapter = VideoAdapter(requireContext(), videoUris)
         videoRecyclerView.adapter = videoAdapter
@@ -95,12 +92,12 @@ class DiscoverFragment : Fragment() {
         )
     }
 
-
     private fun getVideoUris(): List<String> {
         return listOf(
-            "android.resource://com.example.makemytripapp/raw/trip",
-            "android.resource://com.example.makemytripapp/raw/sampleaqaurium"
+            "android.resource://com.example.makemytripapp/raw/sampleaqaurium",
+            "android.resource://com.example.makemytripapp/raw/samplelondon"
         )
     }
+
 
 }

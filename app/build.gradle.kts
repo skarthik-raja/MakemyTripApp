@@ -2,8 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
-
-
 }
 
 android {
@@ -61,17 +59,18 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.4.1")
     implementation ("androidx.navigation:navigation-ui-ktx:2.4.1")
 
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-analytics")
+
+
+
+
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-database:20.3.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
-
-
-    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
-
-
-    implementation("com.google.firebase:firebase-auth")
 
 
 
