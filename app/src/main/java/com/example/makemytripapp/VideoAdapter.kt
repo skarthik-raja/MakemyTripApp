@@ -10,6 +10,9 @@ import com.example.makemytripapp.R
 class VideoAdapter(private val context: Context, private val videoUris: List<String>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
+    private var currentVideoPosition = RecyclerView.NO_POSITION
+    private var currentVideoView: VideoView? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.video_items, parent, false)
         return VideoViewHolder(view)
@@ -17,21 +20,41 @@ class VideoAdapter(private val context: Context, private val videoUris: List<Str
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val videoUri = videoUris[position]
-        holder.bindVideo(context, videoUri)
+        holder.bindVideo(context, videoUri, position == currentVideoPosition)
     }
 
     override fun getItemCount(): Int {
         return videoUris.size
     }
 
-    class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val videoView: VideoView = itemView.findViewById(R.id.videoView)
+    fun playVideo(position: Int) {
+        if (position != currentVideoPosition) {
+            currentVideoPosition = position
+            notifyDataSetChanged()
+        }
+    }
 
-        fun bindVideo(context: Context, videoUri: String) {
+    fun stopPlayback() {
+        currentVideoPosition = RecyclerView.NO_POSITION
+        currentVideoView?.stopPlayback()
+        currentVideoView = null
+    }
+
+    inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val videoView: VideoView = itemView.findViewById(R.id.video_view)
+
+        fun bindVideo(context: Context, videoUri: String, playNow: Boolean) {
             val uri = Uri.parse(videoUri)
             videoView.setVideoURI(uri)
-            videoView.requestFocus()
-            videoView.start()
+
+            if (playNow) {
+                videoView.requestFocus()
+                videoView.start()
+            }
+
+            videoView.setOnPreparedListener {
+                currentVideoView = videoView
+            }
         }
     }
 }
