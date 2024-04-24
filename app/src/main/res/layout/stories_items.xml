@@ -26,6 +26,11 @@
             android:layout_height="wrap_content"
             android:text="Your Text Here"
             android:gravity="center"/>
+
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/videoreels"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.makemytripapp
 
+import MediaAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,8 +18,8 @@ class TravelStoriesFragment : Fragment() {
     private lateinit var dataList: MutableList<MyPlaceStoryData>
 
     private lateinit var recyclerViewstory: RecyclerView
-    private lateinit var adapterstory: StoriesAdapter
-    private val storiesList = ArrayList<StoryModel>()
+    private lateinit var adapterstory: MediaAdapter
+    private val storiesList = ArrayList<MediaModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,11 +27,9 @@ class TravelStoriesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_travel_stories, container, false)
 
-
         recyclerView = view.findViewById(R.id.travel_neweststories)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
 
         dataList = mutableListOf(
             MyPlaceStoryData(
@@ -62,7 +61,6 @@ class TravelStoriesFragment : Fragment() {
         adapter = placesstoryAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
-
         val recyclerViewtravel: RecyclerView = view.findViewById(R.id.travellers_items)
         recyclerViewtravel.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val dataList = listOf("All", "Adventure", "Beach","Food","Relaxation","Hills & Mountains","Wildlife","Trek")
@@ -72,11 +70,12 @@ class TravelStoriesFragment : Fragment() {
         recyclerViewstory = view.findViewById(R.id.reels_stories)
         recyclerViewstory.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        storiesList.add(StoryModel(R.drawable.travel, "Fabulous Trip"))
-        storiesList.add(StoryModel(R.drawable.international, "Explore the world"))
-        storiesList.add(StoryModel(R.drawable.chennaitravel,"M.G.R"))
+        storiesList.add(MediaModel(R.drawable.travel, 0, "Fabulous Trip"))
+        storiesList.add(MediaModel(R.drawable.international, 0, "Explore the world"))
+        storiesList.add(MediaModel(R.drawable.chennaitravel, 0, "M.G.R"))
+        storiesList.add(MediaModel(R.raw.sampleaqaurium, 1, "aqaurium", R.raw.sampleaqaurium))
 
-        adapterstory = StoriesAdapter(requireActivity(), storiesList)
+        adapterstory = MediaAdapter(storiesList)
         recyclerViewstory.adapter = adapterstory
 
         return view

@@ -1,33 +1,51 @@
-package com.example.makemytripapp
-
-import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.makemytripapp.MediaModel
+import com.example.makemytripapp.R
 
-class StoriesAdapter(private val context: Context, private val storiesList: ArrayList<StoryModel>) :
-    RecyclerView.Adapter<StoriesAdapter.StoryViewHolder>() {
+class MediaAdapter(private val mediaList: List<MediaModel>) : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.stories_items, parent, false)
-        return StoryViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.stories_items, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: StoryViewHolder, position: Int) {
-        val story = storiesList[position]
-        holder.storyImage.setImageResource(story.imageResource)
-        holder.textStory.text = story.storyText
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val media = mediaList[position]
+
+        if (media.mediaType == 0) {
+            // Set image resource
+            holder.imageView.setImageResource(media.resourceId)
+            holder.imageView.visibility = View.VISIBLE
+            holder.videoView.visibility = View.GONE
+        } else if (media.mediaType == 1) {
+
+            holder.videoView.setVideoURI(Uri.parse("android.resource://" + holder.itemView.context.packageName + "/" + media.videoResourceId))
+            holder.videoView.start()
+            holder.imageView.visibility = View.GONE
+            holder.videoView.visibility = View.VISIBLE
+        }
+
+        // Set text
+        holder.textView.text = media.text
     }
+
 
     override fun getItemCount(): Int {
-        return storiesList.size
+        return mediaList.size
     }
 
-    inner class StoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val storyImage: ImageView = itemView.findViewById(R.id.story_image)
-        val textStory: TextView = itemView.findViewById(R.id.text_story_image)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageView: ImageView = itemView.findViewById(R.id.story_image)
+        val videoView: VideoView = itemView.findViewById(R.id.videoreels)
+        val textView: TextView = itemView.findViewById(R.id.text_story_image)
     }
+
 }

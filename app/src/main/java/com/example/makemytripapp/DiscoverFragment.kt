@@ -2,14 +2,11 @@ package com.example.makemytripapp
 
 import PlaceAdapter
 import VideoAdapter
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
-import android.widget.VideoView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,12 +14,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 class DiscoverFragment : Fragment() {
 
     private lateinit var tripAdapter: TripAdapter
-
     private lateinit var videoRecyclerView: RecyclerView
     private lateinit var videoAdapter: VideoAdapter
-
-    var videoView:VideoView?=null
-    var mediaController:MediaController?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,9 +49,31 @@ class DiscoverFragment : Fragment() {
 
         val videoUris = getVideoUris()
 
-        videoAdapter = VideoAdapter(requireContext(), videoUris)
+        videoAdapter = VideoAdapter(requireContext(), videoUris) // Create an instance of VideoAdapter and pass the video URIs
         videoRecyclerView.adapter = videoAdapter
-        
+
+        videoRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
+                    val lastVisiblePosition = layoutManager.findLastVisibleItemPosition()
+
+                    for (i in 0 until videoAdapter.itemCount) {
+                        if (i < firstVisiblePosition || i > lastVisiblePosition) {
+                            videoAdapter.stopPlayback()
+                        }
+                    }
+
+                    val visibleVideoPosition = layoutManager.findFirstCompletelyVisibleItemPosition()
+                    if (visibleVideoPosition != RecyclerView.NO_POSITION) {
+                        videoAdapter.playVideo(visibleVideoPosition)
+                    }
+                }
+            }
+        })
+
         return view
     }
 
@@ -93,9 +108,10 @@ class DiscoverFragment : Fragment() {
     private fun getVideoUris(): List<String> {
         return listOf(
             "android.resource://com.example.makemytripapp/raw/sampleaqaurium",
-            "android.resource://com.example.makemytripapp/raw/samplelondon"
+            "android.resource://com.example.makemytripapp/raw/samplelondon",
+            "android.resource://com.example.makemytripapp/raw/trip",
+            "android.resource://com.example.makemytripapp/raw/sample10s"
         )
     }
-
 
 }
