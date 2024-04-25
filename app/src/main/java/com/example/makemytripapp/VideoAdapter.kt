@@ -48,13 +48,26 @@ class VideoAdapter(private val context: Context, private val videoUris: List<Str
             videoView.setVideoURI(uri)
 
             if (playNow) {
-                videoView.requestFocus()
-                videoView.start()
+                startVideo()
+            } else {
+                stopVideo()
             }
 
             videoView.setOnPreparedListener {
                 currentVideoView = videoView
             }
         }
+
+        private fun startVideo() {
+            videoView.start()
+            currentVideoView = videoView
+        }
+
+        private fun stopVideo() {
+            if (videoView.isPlaying) {
+                videoView.stopPlayback()
+            }
+        }
     }
 }
+

@@ -73,6 +73,7 @@ class DiscoverFragment : Fragment() {
                 }
             }
         })
+        videoAdapter.playVideo(0) // Assuming your first video is at position 0
 
         return view
     }
@@ -110,7 +111,7 @@ class DiscoverFragment : Fragment() {
             "android.resource://com.example.makemytripapp/raw/sampleaqaurium",
             "android.resource://com.example.makemytripapp/raw/samplelondon",
             "android.resource://com.example.makemytripapp/raw/trip",
-            "android.resource://com.example.makemytripapp/raw/sample10s"
+            "android.resource://com.example.makemytripapp/raw/car"
         )
     }
 

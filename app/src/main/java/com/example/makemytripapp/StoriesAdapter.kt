@@ -1,3 +1,4 @@
+// MediaAdapter.kt
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import com.example.makemytripapp.MediaModel
 import com.example.makemytripapp.R
 
 class MediaAdapter(private val mediaList: List<MediaModel>) : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+
+    private var onVideoClickListener: OnVideoClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,7 +29,6 @@ class MediaAdapter(private val mediaList: List<MediaModel>) : RecyclerView.Adapt
             holder.imageView.visibility = View.VISIBLE
             holder.videoView.visibility = View.GONE
         } else if (media.mediaType == 1) {
-
             holder.videoView.setVideoURI(Uri.parse("android.resource://" + holder.itemView.context.packageName + "/" + media.videoResourceId))
             holder.videoView.start()
             holder.imageView.visibility = View.GONE
@@ -37,15 +39,29 @@ class MediaAdapter(private val mediaList: List<MediaModel>) : RecyclerView.Adapt
         holder.textView.text = media.text
     }
 
-
     override fun getItemCount(): Int {
         return mediaList.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setOnVideoClickListener(listener: OnVideoClickListener) {
+        this.onVideoClickListener = listener
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.story_image)
         val videoView: VideoView = itemView.findViewById(R.id.videoreels)
         val textView: TextView = itemView.findViewById(R.id.text_story_image)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            onVideoClickListener?.onVideoClick(adapterPosition)
+        }
     }
 
+    interface OnVideoClickListener {
+        fun onVideoClick(position: Int)
+    }
 }
