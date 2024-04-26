@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 
 class MytripsFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

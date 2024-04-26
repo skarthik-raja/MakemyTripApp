@@ -108,10 +108,10 @@ class DiscoverFragment : Fragment() {
 
     private fun getVideoUris(): List<String> {
         return listOf(
-            "android.resource://com.example.makemytripapp/raw/sampleaqaurium",
-            "android.resource://com.example.makemytripapp/raw/samplelondon",
-            "android.resource://com.example.makemytripapp/raw/trip",
-            "android.resource://com.example.makemytripapp/raw/car"
+            "android.resource://com.example.makemytripapp/raw/falls",
+            "android.resource://com.example.makemytripapp/raw/roadview",
+            "android.resource://com.example.makemytripapp/raw/riverfalls",
+            "android.resource://com.example.makemytripapp/raw/swimming"
         )
     }
 

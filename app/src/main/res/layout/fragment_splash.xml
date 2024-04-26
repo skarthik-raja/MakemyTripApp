@@ -7,27 +7,23 @@
     android:background="@color/white"
     tools:context=".SplashFragment">
 
-    <ImageView
-        android:id="@+id/makemytriplogo"
-        android:layout_width="179dp"
-        android:layout_height="91dp"
-        android:src="@drawable/makemytriplogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cardssplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:nestedScrollingEnabled="true"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Powering Magical Trips For 23 Years"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+    <com.example.makemytripapp.CurvedShapeView
+        android:id="@+id/curvedShapeView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="#fdf9f9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/makemytriplogo" />
+        app:layout_constraintTop_toBottomOf="@+id/cardssplash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

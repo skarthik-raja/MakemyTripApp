@@ -35,7 +35,6 @@ class MediaAdapter(private val mediaList: List<MediaModel>) : RecyclerView.Adapt
             holder.videoView.visibility = View.VISIBLE
         }
 
-        // Set text
         holder.textView.text = media.text
     }
 

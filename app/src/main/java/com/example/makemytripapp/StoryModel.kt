@@ -8,5 +8,3 @@ data class MediaModel(
     var isPlaying: Boolean = false
 
 )
-
-

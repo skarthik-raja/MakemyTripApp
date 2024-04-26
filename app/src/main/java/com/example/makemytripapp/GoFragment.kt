@@ -26,8 +26,6 @@ class GoFragment : Fragment() {
 
         viewPager.adapter = adapter
 
-
-
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = adapter.getPageTitle(position)
         }.attach()
