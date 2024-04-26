@@ -1,11 +1,18 @@
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makemytripapp.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class VideoAdapter(private val context: Context, private val videoUris: List<String>) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
@@ -42,10 +49,14 @@ class VideoAdapter(private val context: Context, private val videoUris: List<Str
 
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val videoView: VideoView = itemView.findViewById(R.id.video_view)
+        private val thumbnailImage: ImageView = itemView.findViewById(R.id.thumbnail_image)
 
         fun bindVideo(context: Context, videoUri: String, playNow: Boolean) {
             val uri = Uri.parse(videoUri)
             videoView.setVideoURI(uri)
+
+            // Preload and display the thumbnail image
+            preloadThumbnail(context, uri)
 
             if (playNow) {
                 startVideo()
@@ -58,16 +69,38 @@ class VideoAdapter(private val context: Context, private val videoUris: List<Str
             }
         }
 
+        private fun preloadThumbnail(context: Context, uri: Uri) {
+            // Use a coroutine for asynchronous thumbnail loading
+            CoroutineScope(Dispatchers.IO).launch {
+                val retriever = MediaMetadataRetriever()
+                try {
+                    retriever.setDataSource(context, uri)
+                    val bitmap = retriever.frameAtTime
+                    withContext(Dispatchers.Main) {
+                        thumbnailImage.setImageBitmap(bitmap)
+                    }
+                } catch (e: Exception) {
+                    // Handle exceptions
+                    e.printStackTrace()
+                } finally {
+                    retriever.release()
+                }
+            }
+        }
+
         private fun startVideo() {
             videoView.start()
             currentVideoView = videoView
+            thumbnailImage.visibility =
+                View.GONE // Hide the thumbnail when the video starts playing
         }
 
         private fun stopVideo() {
             if (videoView.isPlaying) {
                 videoView.stopPlayback()
+                thumbnailImage.visibility =
+                    View.VISIBLE // Show the thumbnail when the video stops playing
             }
         }
     }
 }
-

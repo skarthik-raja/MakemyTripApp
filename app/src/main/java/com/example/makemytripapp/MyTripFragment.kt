@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Timer
 import kotlin.concurrent.timerTask
-
-
 class MyTripFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView

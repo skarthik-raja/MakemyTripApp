@@ -2,6 +2,7 @@
 <resources>
     <dimen name="grid_height_two_rows">120dp</dimen>
     <dimen name="grid_height_three_rows">180dp</dimen>
+    <dimen name="spacing">8dp</dimen> <!-- Replace 8dp with your desired spacing -->
 
 
 </resources>
