@@ -27,7 +27,6 @@ class SplashFragment : Fragment() {
         CardItem(R.drawable.dubai)
         // Add more card items as needed
     )
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +41,6 @@ class SplashFragment : Fragment() {
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
         recyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
-
 
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_languageFragment)

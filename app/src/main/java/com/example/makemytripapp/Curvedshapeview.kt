@@ -1,38 +1,32 @@
-package com.example.makemytripapp  // Replace with your actual package name
-
+package com.example.makemytripapp
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 
 class CurvedShapeView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) { // Extend FrameLayout
+) : FrameLayout(context, attrs, defStyleAttr) {
+
+    private val arcColor = Color.parseColor("#FFE5E4E2") // Color for the arc
+    private val arcOutlineColor = Color.parseColor("#FFF0F0F0") // Color for the arc outline
 
     private val paint = Paint().apply {
-        color = 0xFFF5F5F5.toInt() // Sandal with orange color in ARGB format
+        color = arcColor
         style = Paint.Style.FILL
         isAntiAlias = true
     }
 
-    private val curveRadius = 800f // Adjust curve radius as desired
+    private val outlinePaint = Paint().apply {
+        color = arcOutlineColor
+        style = Paint.Style.STROKE
+        strokeWidth = 4f
+    }
 
-    private val imageView: ImageView
-    private val textView: TextView
+    private val arcRadius = 750f // Radius of the arc
 
     init {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.curved_shape_content, this, true) as FrameLayout // Inflate with the FrameLayout
-
-
-        imageView = view.findViewById(R.id.image_view)
-        textView = view.findViewById(R.id.text_view)
+        inflate(context, R.layout.curved_shape, this)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -41,15 +35,17 @@ class CurvedShapeView @JvmOverloads constructor(
         val width = measuredWidth.toFloat()
         val height = measuredHeight.toFloat()
 
-        // Draw a curved rectangle with rounded bottom corners
         val path = Path().apply {
             moveTo(0f, height)
-            lineTo(0f, height - curveRadius)
-            quadTo(width / 2, height, width, height - curveRadius)  // Use quadTo for quadratic Bézier curve
+            lineTo(0f, height - arcRadius)
+            quadTo(width / 2, height, width, height - arcRadius)
             lineTo(width, height)
             lineTo(0f, height)
             close()
         }
         canvas.drawPath(path, paint)
+
+        // Draw outline for visual aid
+        canvas.drawPath(path, outlinePaint)
     }
 }

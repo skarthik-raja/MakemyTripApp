@@ -20,10 +20,9 @@
     <com.example.makemytripapp.CurvedShapeView
         android:id="@+id/curvedShapeView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:background="#fdf9f9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardssplash" />
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey"
+        app:layout_constraintTop_toBottomOf="@+id/cardssplash"
+        android:layout_alignParentBottom="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
