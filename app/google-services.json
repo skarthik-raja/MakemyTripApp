@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "258526159977",
-    "project_id": "koltinfirebase-fec6e",
-    "storage_bucket": "koltinfirebase-fec6e.appspot.com"
+    "project_number": "1000722765823",
+    "project_id": "sample-d7251",
+    "storage_bucket": "sample-d7251.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258526159977:android:00bce524c80a0792d7aef8",
+        "mobilesdk_app_id": "1:1000722765823:android:79c14434d6215f2c81b9ca",
         "android_client_info": {
           "package_name": "com.example.makemytripapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCZh8-I6sZzF4vSEfvqAErM_SZrK-Hw7Sw"
+          "current_key": "AIzaSyC8UmiScDnjeSVKAvfDHgoLzvCxkaJuM2A"
         }
       ],
       "services": {
