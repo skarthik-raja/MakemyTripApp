@@ -31,10 +31,10 @@ class Home_Fragment : Fragment() {
 
     private lateinit var recyclerview5:RecyclerView
     private lateinit var storyAdapter: StoryAdapter
-    private lateinit var list: ArrayList<Int>
+//    private lateinit var list: ArrayList<Int>
 
     private lateinit var exclusiveAdapter:ExclisveImageAdapter
-    private lateinit var imagesList: MutableList<Int>
+//    private lateinit var imagesList: MutableList<Int>
     private lateinit var dataList1: List<Pair<String, Int>> // Data list for initial images
     lateinit var imageAdapter: ImageAdapter
 
