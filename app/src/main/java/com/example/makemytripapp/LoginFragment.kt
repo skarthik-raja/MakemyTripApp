@@ -20,7 +20,6 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.auth
-
 import com.hbb20.CountryCodePicker
 import java.util.concurrent.TimeUnit
 
@@ -44,21 +43,13 @@ class LoginFragment : Fragment() {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                // This callback will be invoked in two situations:
-                // 1 - Instant verification. In some cases the phone number can be instantly
-                //     verified without needing to send or enter a verification code.
-                // 2 - Auto-retrieval. On some devices Google Play services can automatically
-                //     detect the incoming verification SMS and perform verification without
-                //     user action.
                 Log.d(TAG, "onVerificationCompleted:$credential")
                 signInWithPhoneAuthCredential(credential)
             }
-
             override fun onVerificationFailed(e: FirebaseException) {
                 // This callback is invoked in an invalid request for verification is made,
                 // for instance if the the phone number format is not valid.
                 Log.w(TAG, "onVerificationFailed", e)
-
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                 } else if (e is FirebaseTooManyRequestsException) {
@@ -66,8 +57,7 @@ class LoginFragment : Fragment() {
                 } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
                     // reCAPTCHA verification attempted with null Activity
                 }
-
-                // Show a message and update the UI
+            // Show a message and update the UI
             }
 
             override fun onCodeSent(
@@ -93,7 +83,16 @@ class LoginFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.continue_button)
 
         button.setOnClickListener {
-            startPhoneNumberVerification(binding.phoneEditText.text.toString())
+            val phoneNumber = binding.phoneEditText.text.toString()
+            if (phoneNumber.isBlank() || phoneNumber.length < 10) {
+                Toast.makeText(
+                    requireContext(),
+                    "Please enter a valid phone number.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                startPhoneNumberVerification(phoneNumber)
+            }
         }
 
         countryCodePicker.setOnCountryChangeListener {
@@ -142,8 +141,6 @@ class LoginFragment : Fragment() {
                 }
             }
     }
-
-
 
 
     companion object {

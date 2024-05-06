@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.makemytripapp.databinding.FragmentOTPBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +34,17 @@ class OTPFragment : Fragment() {
 
         val submitButton = binding.submitButton
         submitButton.setOnClickListener {
-            verifyPhoneNumberWithCode(storeVerificationId, binding.editTextOtp.text.toString())
+            val otpCode = binding.editTextOtp.text.toString()
+            if (otpCode.isBlank() || otpCode.length < 6) {
+                // Invalid OTP input
+                Toast.makeText(
+                    requireContext(),
+                    "Please enter a valid OTP.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                verifyPhoneNumberWithCode(storeVerificationId, otpCode)
+            }
         }
 
         return view
@@ -57,6 +68,7 @@ class OTPFragment : Fragment() {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
                         // Handle the invalid code error
+
                     }
                     // Update UI or display an error message
                 }
