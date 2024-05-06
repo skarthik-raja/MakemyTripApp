@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
 
-
         showHideBottomNavigation(navController)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNav.setupWithNavController(navController)

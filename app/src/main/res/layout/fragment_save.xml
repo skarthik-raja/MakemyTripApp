@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textviewadddata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add data"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/editTextname"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/textviewadddata"
+        android:layout_marginTop="16dp"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextimage"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextname"
+        android:layout_marginTop="16dp"
+        android:hint="Select Image"
+        android:inputType="text"
+        android:drawableRight="@drawable/upload"
+        android:clickable="true"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/editTextfalse"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextimage"
+        android:layout_marginTop="16dp"
+        android:hint="Boolean"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextisvisible"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextfalse"
+        android:layout_marginTop="16dp"
+        android:hint="Visibility"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextisvisible"
+        android:layout_marginTop="32dp" />
+
+</RelativeLayout>

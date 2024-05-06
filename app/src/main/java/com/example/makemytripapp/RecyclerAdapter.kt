@@ -1,47 +1,91 @@
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.example.makemytripapp.R
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.load.DataSource
 
-class RecyclerAdapter(val context: Context) :
-    RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
+class RecyclerAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val dataList = mutableListOf<RecyclerData>()
+    private var dataset: List<RecyclerData> = ArrayList()
+    private var isItemsVisible = true
 
-    fun updateDataset(updatedList: List<RecyclerData>){
-        dataList.clear()
-        dataList.addAll(updatedList)
+    fun updateDataset(newDataset: List<RecyclerData>) {
+        dataset = newDataset
         notifyDataSetChanged()
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var iv_office: ImageView = itemView.findViewById(R.id.iv_image1)
-        var tv_office: TextView = itemView.findViewById(R.id.tv_text1)
+    fun toggleItems() {
+        isItemsVisible = !isItemsVisible
+        notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler, parent, false)
-        return MyViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_recycler, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = dataList[position]
-        if(currentItem.isVisible){
-            holder.iv_office.visibility = View.VISIBLE
-            holder.tv_office.visibility = View.VISIBLE
-        }else{
-            holder.iv_office.visibility = View.GONE
-            holder.tv_office.visibility = View.GONE
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentItem = dataset[position]
+        if (isItemsVisible) {
+            holder.itemView.visibility = View.VISIBLE
+            holder.bind(currentItem)
+        } else {
+            holder.itemView.visibility = View.GONE
         }
-        holder.iv_office.setImageResource(currentItem.img)
-        holder.tv_office.text = currentItem.office
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return dataset.size
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewName: TextView = itemView.findViewById(R.id.tv_text1)
+        private val imageViewIcon: ImageView = itemView.findViewById(R.id.iv_image1)
+
+        fun bind(item: RecyclerData) {
+            textViewName.text = item.name
+            // Load image using Glide from the URL stored in RecyclerData
+            Glide.with(context)
+                .load(item.imageUrl)
+                .placeholder(R.drawable.placeholder_image) // Placeholder image while loading
+                .error(R.drawable.error_image) // Error image if loading fails
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        // Log the error
+                        Log.e("Glide", "Error loading image: ${e?.message}")
+                        // Return false to allow Glide to handle the error image
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        // Image loaded successfully
+                        return false
+                    }
+                })
+                .into(imageViewIcon)
+        }
+
+
     }
 }

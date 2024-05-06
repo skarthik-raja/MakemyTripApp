@@ -10,14 +10,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Home_Fragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -31,12 +34,12 @@ class Home_Fragment : Fragment() {
 
     private lateinit var recyclerview5:RecyclerView
     private lateinit var storyAdapter: StoryAdapter
-//    private lateinit var list: ArrayList<Int>
 
     private lateinit var exclusiveAdapter:ExclisveImageAdapter
-//    private lateinit var imagesList: MutableList<Int>
+    //    private lateinit var imagesList: MutableList<Int>
     private lateinit var dataList1: List<Pair<String, Int>> // Data list for initial images
     lateinit var imageAdapter: ImageAdapter
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +47,19 @@ class Home_Fragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_, container, false)
 
+        firestore = FirebaseFirestore.getInstance()
+        setupViews(view)
+        setupRecyclerView()
+        retrieveData()
+        setupListeners(view)
+
         recyclerView = view.findViewById(R.id.rv_design)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
         recyclerAdapter = RecyclerAdapter(requireContext())
         recyclerView.adapter = recyclerAdapter
-        recyclerAdapter.updateDataset(getAdditionalItems())
+
         dropdownIcon = view.findViewById(R.id.drop_icon)
+        dropdownIcon.visibility = View.GONE
 
         recyclerView = view.findViewById(R.id.recyclerViewcard)
         tabLayout1 = view.findViewById(R.id.tabLayout1)
@@ -158,20 +168,56 @@ class Home_Fragment : Fragment() {
         val adapter = GridAdapter(requireContext(), imageList)
         recyclerView.adapter = adapter
 
-        var isExpanded = false
-        dropdownIcon.setOnClickListener {
-            Log.d("HomeFragment", "Button is clicked")
-            isExpanded = !isExpanded
-            if (isExpanded) {
-                recyclerAdapter.updateDataset(getAdditionalItems())
-                dropdownIcon.visibility=View.VISIBLE
-            } else {
-                recyclerAdapter.updateDataset(getInitialItems())
-                dropdownIcon.visibility = View.VISIBLE
-            }
-        }
-
         return view
+    }
+
+    private fun setupViews(view: View) {
+        recyclerView = view.findViewById(R.id.rv_design)
+        dropdownIcon = view.findViewById(R.id.drop_icon)
+        firestore = FirebaseFirestore.getInstance()
+    }
+
+    private fun setupRecyclerView() {
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
+        recyclerAdapter = RecyclerAdapter(requireContext())
+        recyclerView.adapter = recyclerAdapter
+    }
+
+    private fun retrieveData() {
+        firestore.collection("HomeData")
+            .get()
+            .addOnSuccessListener { result ->
+                val dataset = mutableListOf<RecyclerData>()
+
+                for (document in result) {
+                    try {
+                        val name = document.getString("name") ?: ""
+                        val imageUrl = document.getString("image") ?: ""
+                        val isBoolean = document.getBoolean("isBoolean") ?: false
+                        val isVisible = document.getBoolean("isVisible") ?: false
+
+                        dataset.add(RecyclerData(name, imageUrl, isBoolean, isVisible))
+                    } catch (e: Exception) {
+                        Log.e("RetrieveData", "Error retrieving document: ${document.id}", e)
+                    }
+                }
+
+                recyclerAdapter.updateDataset(dataset)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("RetrieveData", "Error fetching documents: ", exception)
+                // Handle errors here if needed
+            }
+    }
+
+    private fun setupListeners(view: View) {
+        dropdownIcon.setOnClickListener {
+            recyclerAdapter.toggleItems()
+        }
+        val addDataButton = view.findViewById<Button>(R.id.add_data)
+        addDataButton.setOnClickListener {
+            findNavController().navigate(R.id.home_Fragment_to_saveFragment)
+        }
     }
 
     private fun setupTabLayout() {
@@ -235,39 +281,6 @@ class Home_Fragment : Fragment() {
             YourDataModel("Wish to travel Abroad? Tap here to check the international destinations open for indians now", R.drawable.airplane_svgrepo_com__2_),
             YourDataModel("By many Indian states, check revised RT-PCR guidelines for travel",R.drawable.flaticon)
             // Add more items as needed
-        )
-    }
-    private fun getInitialItems(): List<RecyclerData> {
-        return listOf(
-            RecyclerData("Cab", R.drawable.car, false, true),
-            RecyclerData("HomeStays", R.drawable.house, false, true),
-            RecyclerData("Outstation  cabs", R.drawable.taxi, false, true),
-            RecyclerData("ForexCard& Currency", R.drawable.card, false, true),
-            RecyclerData("GiftCards", R.drawable.gift, false, true),
-            RecyclerData("HourlyStays", R.drawable.hourlystays, false, true),
-            RecyclerData("NearbyStaycations", R.drawable.bags, false, true),
-            RecyclerData("Travel    Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("FlightStatus", R.drawable.flight_ticket_svgrepo_com, false, true),
-            RecyclerData("Holidays", R.drawable.holidays, false, true),
-            RecyclerData("House", R.drawable.house, false, true),
-            RecyclerData("Taxi", R.drawable.taxi, false, true)
-        )
-    }
-
-    private fun getAdditionalItems(): List<RecyclerData> {
-        return listOf(
-            RecyclerData("Cab", R.drawable.car, false, true),
-            RecyclerData("HomeStays", R.drawable.house, false, true),
-            RecyclerData("Outstation  cabs", R.drawable.taxi, false, true),
-            RecyclerData("ForexCard& Currency", R.drawable.card, false, true),
-            RecyclerData("GiftCards", R.drawable.gift, false, true),
-            RecyclerData("HourlyStays", R.drawable.hourlystays, false, true),
-            RecyclerData("NearbyStaycations", R.drawable.bags, false, true),
-            RecyclerData("Travel   Insurance", R.drawable.travelinsurance, false, true),
-            RecyclerData("FlightStatus", R.drawable.flight_ticket_svgrepo_com, false, false),
-            RecyclerData("Holidays", R.drawable.holidays, false, false),
-            RecyclerData("House", R.drawable.house, false, false),
-            RecyclerData("Taxi", R.drawable.taxi, false, false)
         )
     }
 

@@ -20,8 +20,7 @@
         <ImageView
             android:id="@+id/iv_image1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:src="@drawable/car" />
+            android:layout_height="30dp" />
 
         <TextView
             android:id="@+id/tv_text1"
@@ -29,7 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="Text 1"
             android:textSize="10sp" />
 
     </LinearLayout>

@@ -55,7 +55,19 @@
         android:id="@+id/home_Fragment_"
         android:name="com.example.makemytripapp.Home_Fragment"
         android:label="Home Fragment"
-        tools:layout="@layout/fragment_home_"/>
+        tools:layout="@layout/fragment_home_">
+
+        <action
+            android:id="@+id/home_Fragment_to_saveFragment"
+            app:destination="@+id/saveFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/saveFragment"
+        android:name="com.example.makemytripapp.SaveFragment"
+        android:label="Save Fragmnet"
+        tools:layout="@layout/fragment_save"/>
 
     <fragment
         android:id="@+id/mytripsfragment"
