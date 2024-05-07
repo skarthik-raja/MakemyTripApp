@@ -25,23 +25,24 @@
         android:hint="Name"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/editTextimage"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+    <ImageButton
+        android:id="@+id/imageButtonUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/upload"
         android:layout_below="@id/editTextname"
         android:layout_marginTop="16dp"
-        android:hint="Select Image"
-        android:inputType="text"
-        android:drawableRight="@drawable/upload"
-        android:clickable="true"
-        android:focusable="false"/>
+        android:contentDescription="Select Image"
+        android:padding="16dp"
+    android:onClick="onUploadImageClick" />
+
+
 
     <EditText
         android:id="@+id/editTextfalse"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@id/editTextimage"
+        android:layout_below="@id/imageButtonUpload"
         android:layout_marginTop="16dp"
         android:hint="Boolean"
         android:inputType="text" />
