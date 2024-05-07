@@ -250,8 +250,6 @@ class Home_Fragment : Fragment() {
         tabLayout1.addTab(tabLayout1.newTab().setText("Announcement"))
         tabLayout1.addTab(tabLayout1.newTab().setText("Travel News"))
     }
-
-
     private fun loadImages(text: String) {
         val images = when (text) {
             "Hotels" -> dataList1.filter { it.first == "Hotels" }.map { it.second }
@@ -265,7 +263,6 @@ class Home_Fragment : Fragment() {
         }
         imageAdapter.setData(images)
     }
-
 
     private fun getAnnouncementItems(): List<YourDataModel> {
         return listOf(

@@ -80,12 +80,11 @@ class RecyclerAdapter(private val context: Context) : RecyclerView.Adapter<Recyc
                         isFirstResource: Boolean
                     ): Boolean {
                         // Image loaded successfully
+                        Log.d("Glide", "Image loaded successfully")
                         return false
                     }
                 })
                 .into(imageViewIcon)
         }
-
-
     }
 }
