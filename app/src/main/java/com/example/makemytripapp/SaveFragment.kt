@@ -17,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class SaveFragment : Fragment() {
 
-
     private lateinit var saveButton: Button
     private lateinit var firestore: FirebaseFirestore
     private lateinit var imageEditText: ImageButton
@@ -110,7 +109,6 @@ class SaveFragment : Fragment() {
             isImageSelected = true // Set the flag to true
         }
     }
-
 
     companion object {
         private const val GALLERY_REQUEST_CODE = 1001
