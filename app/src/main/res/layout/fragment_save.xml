@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#F4F4F4">
 
     <TextView
         android:id="@+id/textviewadddata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add data"
-        android:textSize="20sp"
+        android:text="Add Data"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        tools:ignore="HardcodedText" />
+        android:textColor="#333333" />
 
     <EditText
         android:id="@+id/editTextname"
@@ -22,29 +23,53 @@
         android:layout_height="48dp"
         android:layout_below="@id/textviewadddata"
         android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
         android:hint="Name"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#333333"
         android:inputType="text" />
 
-    <ImageButton
-        android:id="@+id/imageButtonUpload"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/upload"
         android:layout_below="@id/editTextname"
         android:layout_marginTop="16dp"
-        android:contentDescription="Select Image"
-        android:padding="16dp"
-    android:onClick="onUploadImageClick" />
+        android:id="@+id/imagelayout"
+        android:gravity="center_horizontal">
 
+        <ImageButton
+            android:id="@+id/imageButtonUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/upload"
+            android:contentDescription="Select Image"
+            android:padding="16dp"
+            android:onClick="onUploadImageClick" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imageButtonUpload"
+            android:layout_marginStart="8dp"
+            android:text="Upload Image"
+            android:layout_marginTop="15dp"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/editTextfalse"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@id/imageButtonUpload"
+        android:layout_below="@id/imagelayout"
         android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
         android:hint="Boolean"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#333333"
         android:inputType="text" />
 
     <EditText
@@ -53,7 +78,11 @@
         android:layout_height="48dp"
         android:layout_below="@id/editTextfalse"
         android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
         android:hint="Visibility"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#333333"
         android:inputType="text" />
 
     <Button
@@ -61,8 +90,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:backgroundTint="@color/blue"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/editTextisvisible"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:textColor="#FFFFFF"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp" />
 
 </RelativeLayout>
